@@ -17,7 +17,7 @@ const GET_TEAM_PAGE = `
 
 export default async function TeamMembersComp() {
     const data: TeamPageEntry = await useContentful(GET_TEAM_PAGE);
-    const {bannerImage, headline, descriptionText, teamGrid} = data;
+    const { headline } = data;
 
     // if (!data) return <span>Loading...</span>
 

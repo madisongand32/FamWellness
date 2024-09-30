@@ -1,18 +1,11 @@
-import Image from "next/image";
-import { createClient } from 'contentful';
-import { useRouter } from 'next/router'
 import Head from "next/head";
-import { notFound } from 'next/navigation'
-import { AppProps } from 'next/app';
-import Link from "next/link";
-import { useState, useEffect } from "react";
 import { TeamPageEntry } from "../types/contentful/pages/team";
 import useContentful from "../utils/graphql/use-contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import {
-  useContentfulInspectorMode,
-  useContentfulLiveUpdates,
-} from '@contentful/live-preview/react';
+// import {
+//   useContentfulInspectorMode,
+//   useContentfulLiveUpdates,
+// } from '@contentful/live-preview/react';
 import { draftMode } from 'next/headers';
 
 const GET_TEAM_PAGE = `
@@ -55,7 +48,7 @@ export default async function Team() {
   // Fetch the data from Contentful using GraphQL
   const isDraftMode = draftMode().isEnabled;
   const data: TeamPageEntry = await useContentful(GET_TEAM_PAGE, isDraftMode);
-  const {id, bannerImage, headline, descriptionText, teamGrid} = data;
+  const { bannerImage, headline, descriptionText } = data;
 
 
   if (!data) {
