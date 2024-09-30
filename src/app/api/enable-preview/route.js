@@ -1,7 +1,8 @@
-import { cookies, draftMode } from 'next/headers';
-import { redirect } from 'next/navigation';
+// import { cookies, draftMode } from 'next/headers';
+import { cookies } from 'next/headers';
+// import { redirect } from 'next/navigation';
 
-export async function GET(request, res) {
+export async function GET(request) {
     console.log('enable-preview API called');
     const { searchParams } = new URL(request.url);
     const secret = searchParams.get('secret');
