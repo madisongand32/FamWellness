@@ -9,4 +9,24 @@ const nextConfig = {
       },
   }
    
-  module.exports = nextConfig
+  module.exports = {
+    async headers() {
+      return [
+        {
+          // Apply security headers to all routes
+          source: "/(.*)",
+          headers: [
+            {
+              key: "Content-Security-Policy",
+              value: "frame-ancestors 'self' https://preview.contentful.com", // Allow embedding from Contentful or any other sources needed
+            },
+            {
+              key: "X-Frame-Options",
+              value: "ALLOW-FROM https://preview.contentful.com", // Allows iframes from this specific domain
+            },
+          ],
+        },
+      ];
+    },
+  };
+  
