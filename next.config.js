@@ -13,20 +13,19 @@ const nextConfig = {
     async headers() {
       return [
         {
-          // Apply security headers to all routes
           source: "/(.*)",
           headers: [
             {
               key: "Content-Security-Policy",
-              value: "frame-ancestors 'self' https://preview.contentful.com", // Allow embedding from Contentful or any other sources needed
+              value: "frame-ancestors 'self' https://preview.contentful.com https://app.contentful.com", // Add both Contentful domains
             },
             {
               key: "X-Frame-Options",
-              value: "ALLOW-FROM https://preview.contentful.com", // Allows iframes from this specific domain
+              value: "ALLOW-FROM https://preview.contentful.com", // Allow framing from the Contentful preview domain
             },
           ],
         },
       ];
     },
-  };
+  };  
   
