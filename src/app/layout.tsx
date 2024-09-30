@@ -4,6 +4,8 @@ import "./globals.css";
 import "./styles/styles.scss";
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
+import ContentfulPreview from "./components/ContentfulPreview";
+import { draftMode } from 'next/headers';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,13 +29,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+
+    const isDraftMode = draftMode().isEnabled;
+
+    return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar/>
-        {children}
+        <ContentfulPreview isEnabled={isDraftMode}>
+          {children}
+        </ContentfulPreview>
       </body>
       <Footer/>
     </html>
